@@ -75,6 +75,7 @@
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
 \RequirePackage{fontawesome}
+\RequirePackage{academicons}
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
@@ -289,6 +290,10 @@
 % Usage: \github{<github-nick>}
 \newcommand*{\github}[1]{\def\@github{#1}}
 
+% Defines writer's google scholar (optional)
+% Usage: \scholar{<url>}
+\newcommand*{\scholar}[1]{\def\@scholar{#1}}
+
 % Defines writer's gitlab (optional)
 % Usage: \gitlab{<gitlab-nick>}
 \newcommand*{\gitlab}[1]{\def\@gitlab{#1}}
@@ -459,6 +464,12 @@
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \href{https://github.com/\@github}{\faGithubSquare\acvHeaderIconSep\@github}%
+        }%
+      \ifthenelse{\isundefined{\@scholar}}%
+        {}%
+        {%
+          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+          \href{https://scholar.google.com/citations?&user=\@scholar}{\aiGoogleScholar\acvHeaderIconSep\@firstname\@lastname}%
         }%
       \ifthenelse{\isundefined{\@gitlab}}%
         {}%
